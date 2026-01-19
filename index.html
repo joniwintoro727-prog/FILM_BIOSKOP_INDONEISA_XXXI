@@ -1,253 +1,144 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>XINEMA INDO</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f0f0f;
-      color: white;
-    }
-    header {
-      background: #e50914;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-      padding: 15px;
-    }
-    .card {
-      background: #1c1c1c;
-      border-radius: 10px;
-      overflow: hidden;
-      text-align: center;
-    }
-    .card img {
-      width: 100%;
-    }
-    .card h3 {
-      font-size: 14px;
-      padding: 8px;
-    }
-    .card a {
-      display: block;
-      background: #e50914;
-      color: white;
-      text-decoration: none;
-      padding: 8px;
-      margin: 10px;
-      border-radius: 5px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XINEMA INDO</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter;background:#0f0f0f;color:#fff}
+
+/* NAVBAR */
+header{
+position:fixed;top:0;width:100%;
+background:rgba(0,0,0,.85);
+padding:15px 30px;
+display:flex;justify-content:space-between;
+z-index:999
+}
+header h1{color:#e50914;font-weight:800}
+input{
+background:#222;border:none;color:#fff;
+padding:8px 12px;border-radius:6px;
+outline:none
+}
+
+/* HERO */
+.hero{
+height:90vh;
+background:
+linear-gradient(to top,#0f0f0f,rgba(0,0,0,.4)),
+url('https://picsum.photos/1200/700');
+background-size:cover;
+display:flex;align-items:center;
+padding:80px 40px
+}
+.hero h2{font-size:42px;margin-bottom:15px}
+.hero p{color:#ccc;max-width:500px}
+
+/* SECTION */
+section{padding:40px}
+.row{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+gap:16px
+}
+.card{
+background:#1c1c1c;
+border-radius:8px;
+overflow:hidden;
+cursor:pointer;
+transition:.3s
+}
+.card:hover{transform:scale(1.05)}
+.card img{width:100%;height:240px;object-fit:cover}
+.card h4{padding:10px;text-align:center;font-size:14px}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.8);
+align-items:center;justify-content:center;
+z-index:1000
+}
+.modal iframe{
+width:90%;height:300px;max-width:600px
+}
+.close{
+position:absolute;top:20px;right:30px;
+font-size:30px;cursor:pointer
+}
+
+footer{text-align:center;padding:30px;color:#777}
+</style>
 </head>
+
 <body>
 
-<header>🎬 XINEMA INDO</header>
+<header>
+<h1>XINEMA</h1>
+<input type="text" placeholder="Search film..." onkeyup="searchFilm(this.value)">
+</header>
 
-<div class="container">
-  <div class="card">
-    <img src="https://via.placeholder.com/300x450">
-    <h3>Film Horor</h3>
-    <a href="#">Nonton</a>
-  </div>
+<div class="hero">
+<div>
+<h2>Film Bioskop & Horor</h2>
+<p>Nonton trailer film terbaru dengan tampilan ala Netflix. Gratis & ringan.</p>
+</div>
 </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XINEMA INDO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-    }
+<section>
+<h3>Trending Now</h3>
+<div class="row" id="filmList">
 
-    /* NAVBAR */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 40px;
-      z-index: 1000;
-    }
-    header h1 {
-      color: #e50914;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #ccc;
-      font-weight: 500;
-    }
-    nav a:hover { color: #fff; }
+<div class="card" onclick="playTrailer('dQw4w9WgXcQ')">
+<img src="https://picsum.photos/300/400?1">
+<h4>Film Horor 1</h4>
+</div>
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(to top, #0f0f0f, rgba(0,0,0,0.4)),
-        url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      padding: 0 60px;
-    }
-    .hero-content {
-      max-width: 600px;
-    }
-    .hero h2 {
-      font-size: 56px;
-      font-weight: 900;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: #ddd;
-    }
-    .hero button {
-      padding: 14px 30px;
-      border: none;
-      font-size: 16px;
-      border-radius: 6px;
-      margin-right: 10px;
-      cursor: pointer;
-    }
-    .btn-play {
-      background: #e50914;
-      color: #fff;
-    }
-    .btn-info {
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-    }
+<div class="card" onclick="playTrailer('9bZkp7q19f0')">
+<img src="https://picsum.photos/300/400?2">
+<h4>Film Horor 2</h4>
+</div>
 
-    /* SECTION */
-    section {
-      padding: 40px 60px;
-    }
-    section h3 {
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
+<div class="card" onclick="playTrailer('l482T0yNkeo')">
+<img src="https://picsum.photos/300/400?3">
+<h4>Film Action</h4>
+</div>
 
-    /* MOVIE ROW */
-    .row {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background: #1a1a1a;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
-    }
-    .card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-    .card h4 {
-      padding: 10px;
-      font-size: 14px;
-      text-align: center;
-    }
+</div>
+</section>
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #777;
-      font-size: 14px;
-    }
+<footer>© 2026 XINEMA INDO</footer>
 
-    @media (max-width: 768px) {
-      header { padding: 16px 20px; }
-      .hero { padding: 0 20px; }
-      .hero h2 { font-size: 36px; }
-      section { padding: 30px 20px; }
-    }
-  </style>
-</head>
-<body>
+<!-- MODAL -->
+<div class="modal" id="modal">
+<span class="close" onclick="closeModal()">✖</span>
+<iframe id="trailer" src="" allowfullscreen></iframe>
+</div>
 
-  <header>
-    <h1>XINEMA</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Movies</a>
-      <a href="#">Series</a>
-      <a href="#">My List</a>
-    </nav>
-  </header>
-
-  <div class="hero">
-    <div class="hero-content">
-      <h2>Film Horor Terbaik</h2>
-      <p>Nikmati koleksi film horor, action, dan thriller pilihan dengan tampilan modern ala streaming platform.</p>
-      <button class="btn-play">▶ Play</button>
-      <button class="btn-info">ℹ Info</button>
-    </div>
-  </div>
-
-  <section>
-    <h3>Trending Now</h3>
-    <div class="row">
-      <div class="card"><img src="https://picsum.photos/300/400?1"><h4>Film 1</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?2"><h4>Film 2</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?3"><h4>Film 3</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?4"><h4>Film 4</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?5"><h4>Film 5</h4></div>
-    </div>
-  </section>
-
-  <section>
-    <h3>Horor Indonesia</h3>
-    <div class="row">
-      <div class="card"><img src="https://picsum.photos/300/400?6"><h4>Horor 1</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?7"><h4>Horor 2</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?8"><h4>Horor 3</h4></div>
-      <div class="card"><img src="https://picsum.photos/300/400?9"><h4>Horor 4</h4></div>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 XINEMA INDO · Streaming UI Concept
-  </footer>
+<script>
+function playTrailer(id){
+document.getElementById('modal').style.display='flex';
+document.getElementById('trailer').src=
+'https://www.youtube.com/embed/'+id;
+}
+function closeModal(){
+document.getElementById('modal').style.display='none';
+document.getElementById('trailer').src='';
+}
+function searchFilm(q){
+q=q.toLowerCase();
+document.querySelectorAll('.card').forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
+});
+}
+</script>
 
 </body>
 </html>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/ID_VIDEO"
-allowfullscreen></iframe>
-<a href="https://www.youtube.com/watch?v=xxx" target="_blank">Tonton Trailer</a>
-
-
