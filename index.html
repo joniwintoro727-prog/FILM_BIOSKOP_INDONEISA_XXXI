@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -118,7 +119,7 @@ footer{text-align:center;padding:30px;color:#777}
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-<span class="close" onclick="closeModal()">✖</span>
+<span class="close" onclick="closeModal()">✖️</span>
 <iframe id="trailer" src="" allowfullscreen></iframe>
 </div>
 
@@ -142,3 +143,478 @@ c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
 
 </body>
 </html>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:31]
+/xinema-indo
+├── index.html
+├── detail.html
+└── data.js
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:31]
+<script>
+const films = [
+  {
+    id: 1,
+    title: "Film Horor 1",
+    poster: "https://picsum.photos/300/400?1",
+    desc: "Film horor paling menyeramkan tahun ini.",
+    trailer: "dQw4w9WgXcQ",
+    genre: "Horor"
+  },
+  {
+    id: 2,
+    title: "Film Action",
+    poster: "https://picsum.photos/300/400?2",
+    desc: "Action brutal penuh ledakan.",
+    trailer: "9bZkp7q19f0",
+    genre: "Action"
+  }
+];
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:31]
+<script src="data.js"></script>
+<script>
+const list = document.getElementById("filmList");
+
+films.forEach(film=>{
+  list.innerHTML += `
+  <div class="card" onclick="openDetail(${film.id})">
+    <img src="${film.poster}">
+    <h4>${film.title}</h4>
+  </div>`;
+});
+
+function openDetail(id){
+  location.href = "detail.html?id=" + id;
+}
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:31]
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Film</title>
+<style>
+body{background:#0f0f0f;color:#fff;font-family:Arial;padding:20px}
+img{width:200px;border-radius:10px}
+iframe{width:100%;height:300px;margin-top:20px}
+a{color:#e50914;text-decoration:none}
+</style>
+</head>
+<body>
+
+<a href="index.html">⬅️ Kembali</a>
+<h1 id="title"></h1>
+<img id="poster">
+<p id="desc"></p>
+
+<iframe id="trailer" allowfullscreen></iframe>
+
+<script src="data.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const film = films.find(f=>f.id==params.get("id"));
+
+document.getElementById("title").innerText = film.title;
+document.getElementById("poster").src = film.poster;
+document.getElementById("desc").innerText = film.desc;
+document.getElementById("trailer").src =
+"https://www.youtube.com/embed/" + film.trailer;
+</script>
+
+</body>
+</html>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:49]
+<script>
+const films = [
+  {
+    id: 1,
+    title: "Film Horor 1",
+    poster: "https://picsum.photos/300/400?1",
+    desc: "Film horor paling menyeramkan.",
+    trailer: "dQw4w9WgXcQ",
+    genre: "Horor"
+  },
+  {
+    id: 2,
+    title: "Film Action",
+    poster: "https://picsum.photos/300/400?2",
+    desc: "Action brutal penuh ledakan.",
+    trailer: "9bZkp7q19f0",
+    genre: "Action"
+  },
+  {
+    id: 3,
+    title: "Horor Indonesia",
+    poster: "https://picsum.photos/300/400?3",
+    desc: "Horor lokal paling ngeri.",
+    trailer: "l482T0yNkeo",
+    genre: "Horor"
+  }
+];
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:49]
+<div style="padding:20px">
+<button onclick="filterFilm('All')">Semua</button>
+<button onclick="filterFilm('Horor')">Horor</button>
+<button onclick="filterFilm('Action')">Action</button>
+</div>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:49]
+button{
+background:#222;color:#fff;
+border:none;padding:8px 16px;
+margin-right:6px;border-radius:20px;
+cursor:pointer
+}
+button:hover{background:#e50914}
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:49]
+<script src="data.js"></script>
+<script>
+const list = document.getElementById("filmList");
+
+function render(data){
+  list.innerHTML = "";
+  data.forEach(film=>{
+    list.innerHTML += `
+    <div class="card" onclick="openDetail(${film.id})">
+      <img src="${film.poster}">
+      <h4>${film.title}</h4>
+    </div>`;
+  });
+}
+
+render(films);
+
+function openDetail(id){
+  location.href = "detail.html?id=" + id;
+}
+
+function filterFilm(genre){
+  if(genre==="All") render(films);
+  else render(films.filter(f=>f.genre===genre));
+}
+
+function searchFilm(q){
+  q=q.toLowerCase();
+  render(films.filter(f=>
+    f.title.toLowerCase().includes(q)
+  ));
+}
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:49]
+/xinema-indo
+├── index.html
+├── detail.html
+├── data.js
+└── style.css   (opsional, boleh nyatu)
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<div class="hero" id="hero"></div>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<script>
+let i=0;
+setInterval(()=>{
+  const f = films[i % films.length];
+  document.getElementById("hero").style.backgroundImage =
+  linear-gradient(to top,#0f0f0f,rgba(0,0,0,.4)),url(${f.poster});
+  document.getElementById("hero").innerHTML =
+  `<div>
+    <h2>${f.title}</h2>
+    <p>${f.desc}</p>
+    <button class="btn-play" onclick="openDetail(${f.id})">▶️ Play</button>
+  </div>`;
+  i++;
+},4000);
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<div class="card">
+  <img src="...">
+  <div class="overlay">
+    <p>HOROR</p>
+    <button>▶️</button>
+  </div>
+</div>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+.overlay{
+position:absolute;bottom:0;width:100%;
+background:rgba(0,0,0,.8);
+opacity:0;transition:.3s;
+padding:10px;text-align:center
+}
+.card{position:relative}
+.card:hover .overlay{opacity:1}
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+@media(max-width:600px){
+.hero{height:70vh;padding:20px}
+header h1{font-size:18px}
+}
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+fetch("https://raw.githubusercontent.com/USERNAME/REPO/main/data.js")
+.then(r=>r.text())
+.then(eval);
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<script>
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.onkeydown=e=>{
+if(e.keyCode==123|| (e.ctrlKey&&e.shiftKey)) return false;
+}
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<div style="margin:20px 0;padding:10px;background:#222;text-align:center">
+<a href="https://t.me/FILM_BIOSKOP_HOROR_0" target="_blank">
+🔥 JOIN TELEGRAM FILM TERBARU 🔥
+</a>
+</div>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+xinema-indo/
+├── index.html
+├── detail.html
+└── data.js
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<script>
+const films = [
+  {
+    id: 1,
+    title: "Horor Indonesia",
+    poster: "https://picsum.photos/400/600?1",
+    desc: "Film horor Indonesia paling menyeramkan.",
+    trailer: "dQw4w9WgXcQ",
+    genre: "Horor"
+  },
+  {
+    id: 2,
+    title: "Action Brutal",
+    poster: "https://picsum.photos/400/600?2",
+    desc: "Aksi brutal penuh ledakan.",
+    trailer: "9bZkp7q19f0",
+    genre: "Action"
+  },
+  {
+    id: 3,
+    title: "Horor Malam",
+    poster: "https://picsum.photos/400/600?3",
+    desc: "Teror misterius di malam hari.",
+    trailer: "l482T0yNkeo",
+    genre: "Horor"
+  }
+];
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:50]
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XINEMA INDO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter;background:#0f0f0f;color:#fff}
+
+/* NAV */
+header{
+position:fixed;top:0;width:100%;
+background:rgba(0,0,0,.85);
+display:flex;justify-content:space-between;
+padding:15px 30px;z-index:999
+}
+header h1{color:#e50914;font-weight:900}
+input{
+background:#222;border:none;color:#fff;
+padding:8px 14px;border-radius:20px;
+outline:none
+}
+
+/* HERO */
+.hero{
+height:90vh;
+background-size:cover;
+background-position:center;
+display:flex;align-items:flex-end;
+padding:60px
+}
+.hero h2{font-size:42px}
+.hero p{max-width:500px;color:#ccc}
+
+/* FILTER */
+.filter{padding:20px}
+.filter button{
+background:#222;color:#fff;border:none;
+padding:8px 16px;border-radius:20px;
+margin-right:6px;cursor:pointer
+}
+.filter button:hover{background:#e50914}
+
+/* FILM */
+section{padding:20px}
+.row{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+gap:16px
+}
+.card{
+background:#1c1c1c;border-radius:8px;
+overflow:hidden;cursor:pointer;
+transition:.3s;position:relative
+}
+.card:hover{transform:scale(1.05)}
+.card img{width:100%;height:240px;object-fit:cover}
+.card h4{text-align:center;padding:8px;font-size:14px}
+
+footer{text-align:center;padding:30px;color:#777}
+
+/* MOBILE */
+@media(max-width:600px){
+.hero{padding:20px;height:70vh}
+.hero h2{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+<heade
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:51]
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Film</title>
+<style>
+body{background:#0f0f0f;color:#fff;font-family:Arial;padding:20px}
+img{width:220px;border-radius:10px}
+iframe{width:100%;height:300px;margin-top:20px}
+a{color:#e50914;text-decoration:none}
+</style>
+</head>
+<body>
+
+<a href="index.html">⬅️ Kembali</a>
+<h1 id="title"></h1>
+<img id="poster">
+<p id="desc"></p>
+
+<iframe id="trailer" allowfullscreen></iframe>
+
+<div style="margin-top:20px;padding:10px;background:#222;text-align:center">
+<a href="https://t.me/FILM_BIOSKOP_HOROR_0" target="_blank">
+🔥 JOIN TELEGRAM UPDATE FILM 🔥
+</a>
+</div>
+
+<script src="data.js"></script>
+<script>
+const id=new URLSearchParams(location.search).get("id");
+const f=films.find(x=>x.id==id);
+title.innerText=f.title;
+poster.src=f.poster;
+desc.innerText=f.desc;
+trailer.src="https://www.youtube.com/embed/"+f.trailer;
+</script>
+
+</body>
+</html>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:51]
+https://joniwintoro727-prog.github.io/xinema-indo/
+
+𝖉𝖎𝖙𝖆, [20/01/2026 10:52]
+xinema-indo/
+├── manifest.json
+└── sw.js
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:08]
+{
+  "name": "XINEMA INDO",
+  "short_name": "XINEMA",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#e50914",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/8Km9tLL.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.imgur.com/8Km9tLL.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:09]
+self.addEventListener("install", e => {
+  e.waitUntil(
+    caches.open("xinema-cache").then(cache => {
+      return cache.addAll([
+        "index.html",
+        "detail.html",
+        "data.js"
+      ]);
+    })
+  );
+});
+
+self.addEventListener("fetch", e => {
+  e.respondWith(
+    caches.match(e.request).then(r => r || fetch(e.request))
+  );
+});
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:09]
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e50914">
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:09]
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:09]
+https://xinemaindo.my.id
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:09]
+<meta name="description" content="XINEMA INDO - Streaming trailer film bioskop dan horor terbaru">
+<meta name="keywords" content="film horor, bioskop, trailer film, streaming indonesia">
+<meta name="robots" content="index, follow">
+
+𝖉𝖎𝖙𝖆, [20/01/2026 11:09]
+<form onsubmit="addFilm(event)">
+<input placeholder="Judul">
+<input placeholder="Poster URL">
+<input placeholder="Trailer ID">
+<button>Tambah</button>
+</form>
+
+<script>
+function addFilm(e){
+e.preventDefault();
+alert("Mode admin aktif (next bisa ke Firebase)");
+}
+</script>
